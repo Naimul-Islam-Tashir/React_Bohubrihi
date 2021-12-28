@@ -1,0 +1,22 @@
+.book-continer {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid red;
+    width: 100%;
+}
+
+.book h3,
+h4 {
+    width: 200px;
+    text-align: left;
+    background-color: rgb(38, 179, 179);
+    color: white;
+    line-height: 40px;
+    padding: 0px 20px;
+    text-transform: uppercase;
+}
+
+.book h4 {
+    background-color: thistle;
+    color: rgb(131, 34, 34);
+}

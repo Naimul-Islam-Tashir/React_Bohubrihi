@@ -1,0 +1,9 @@
+.app {
+  width: 1140px;
+  margin: 0px auto;
+}
+
+.app h1 {
+  text-align: center;
+  border-bottom: 1px solid red;
+}
