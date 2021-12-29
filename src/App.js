@@ -22,46 +22,43 @@ class App extends Component{
             {bookname:"Math" , writer:"tashir ahmed"}
           ]
   }
-  changeBookState=(changeBookName)=>{
-    this.setState(
-      {
-        books:
-        [
-          {bookname:changeBookName , writer:"fateha nasrin"},
-          {bookname:"English" , writer:"Tushi"},
-          {bookname:"Math" , writer:"naimul islam"}
-        ]
-      }
-    )
+
+  changeWithInputState=(event,index)=>{
+    const book={
+      ...this.state.books[index] //jei boi er index sheta book a save hoye jabe.
+    }
+    book.bookname=event.target.value; //input theke value take book er objecet er booknamer property ke updated kora
+    const books=[...this.state.books]; // books object er akta copy books insert kora holo
+    books[index]=book;
+    this.setState({books : books})
   }
-  changeWithInputState=(e)=>{
-    this.setState(
-      {
-        books:
-        [
-          {bookname:e.target.value , writer:"fateha nasrin"},
-          {bookname:"English" , writer:"Tushi"},
-          {bookname:"Math" , writer:"naimul islam"}
-        ]
-      });
-  }
+  deleteBookState = index => {
+    //const books = this.state.books.slice(); array copy
+    //const books = this.state.books.map(item => item); array copy
+    const dbooks = [...this.state.books];
+    dbooks.splice(index, 1);//main array change kore dhey tai array take copy kore nite hobe
+    this.setState({
+      books: dbooks
+    });
+  };
   render(){
+    const booksState=this.state.books;
+    const books=booksState.map((book , index)=>{
+      return(
+        <Book
+        key={index+1}
+        bookname={book.bookname}
+        writer={book.writer}
+        delete={() => this.deleteBookState(index)}
+        inputName={(event) =>this.changeWithInputState(event,index)}
+        />
+      );
+      
+    });
     return(
       <div className='app'>
         <h1>....Book list...</h1>
-        <button onClick={ ()=>this.changeBookState("computer fundamantel")}>change Button</button>
-        <input type="text" onChange={this.changeWithInputState}/>
-        <Book
-         name={this.state.books[0].bookname}
-         writer={this.state.books[0].writer}
-         inputName={this.changeWithInputState} />
-        <Book
-         name={this.state.books[1].bookname}
-         writer={this.state.books[1].writer} />
-        <Book 
-         name={this.state.books[2].bookname}
-         writer={this.state.books[2].writer }
-         cange={this.changeBookState.bind(this,"graphics design")}/>
+        {books}
       </div>
     )
   }

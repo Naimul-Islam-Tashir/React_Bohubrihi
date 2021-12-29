@@ -4,9 +4,9 @@ const Book=(props)=>{
 return(
     <div className="book">
         <div className="book-continer">
-        <h3 onClick={props.cange}>BookName:{props.name}</h3>
+        <h3 onClick={props.delete}>BookName : {props.bookname}</h3>
         <h4>Writer :{props.writer}</h4>
-        <input type="text" onChange={props.inputName} value={props.name}></input>
+        <input type="text" onChange={props.inputName}  value={props.bookname}></input>
         </div>
     </div>
 )

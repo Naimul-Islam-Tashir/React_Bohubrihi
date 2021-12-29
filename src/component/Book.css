@@ -7,11 +7,11 @@
 
 .book h3,
 h4 {
-    width: 200px;
+    width: 250px;
     text-align: left;
     background-color: rgb(38, 179, 179);
     color: white;
-    line-height: 40px;
+    line-height: 30px;
     padding: 0px 20px;
     text-transform: uppercase;
 }
@@ -19,4 +19,19 @@ h4 {
 .book h4 {
     background-color: thistle;
     color: rgb(131, 34, 34);
+}
+
+.book h3 span {
+    color: brown;
+}
+
+.book h3 {
+    cursor: pointer;
+}
+
+input {
+    height: 10px;
+    width: 100px;
+    padding: 10px 20px;
+    margin-top: 18px;
 }
