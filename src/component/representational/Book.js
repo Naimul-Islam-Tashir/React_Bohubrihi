@@ -1,6 +1,7 @@
 import React from "react";
 import '../../stylesheets/Book.css';
 const Book=(props)=>{
+    console.log("I am From Book Component");
 return(
     <div className="book">
         <div className="book-continer">

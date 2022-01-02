@@ -1,48 +1,79 @@
-import React, { Component } from "react";
-import bookList from '../assets/books'
-import BookList from "./lists/BookList";
+import React, { Component } from 'react';
+import BookList from './lists/BookList';
+import bookList from '../assets/books';
 
-class MainComponent extends Component{
-    state ={
-        books:bookList,
-        showToggle:true
-      }
-    
-      changeWithInputState=(event,index)=>{
-        const book={
-          ...this.state.books[index] //jei boi er index sheta book a save hoye jabe.
+
+class MainComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            books: bookList,
+            showBooks: true
         }
-        book.bookname=event.target.value; //input theke value take book er objecet er booknamer property ke updated kora
-        const books=[...this.state.books]; // books object er akta copy books insert kora holo
-        books[index]=book;
-        this.setState({books : books})
-      }
-      deleteBookState = index => {
-        //const books = this.state.books.slice(); array copy
-        //const books = this.state.books.map(item => item); array copy
-        const dbooks = [...this.state.books];
-        dbooks.splice(index, 1);//main array change kore dhey tai array take copy kore nite hobe
+        console.log("MainComponent constructor!");
+    }
+
+
+    changeWithInputState = (event, index) => {
+        const book = {
+            ...this.state.books[index]
+        }
+        book.bookName = event.target.value;
+        const books = [...this.state.books];
+        books[index] = book;
+        this.setState({ books: books });
+    }
+
+    deleteBookState = index => {
+        //const books = this.state.books.slice();
+        //const books = this.state.books.map(item => item);
+        const books = [...this.state.books];
+        books.splice(index, 1);
         this.setState({
-          books: dbooks
+            books: books
         });
-      };
-      toggleBooks=()=>{
-        this.setState({showToggle:!this.state.showToggle})
-      }
-      render(){
-        let books=null;
-        if(this.state.showToggle){
-          books=<BookList books={this.state.books}
-           deleteBookState={this.deleteBookState}
-           changeWithInputState={this.changeWithInputState} />
+    };
+
+    toggleBooks = () => {
+        this.setState({ showBooks: !this.state.showBooks });
+    }
+
+
+
+    componentDidMount() {
+        console.log("MainComponent componentDidMount!");
+    }
+
+    UNSAFE_componentWillMount() {
+        console.log("MainComponent componentWillMount!");
+    }
+
+    render() {
+        console.log("MainCompoent render");
+        const style = {
+            border: "1px solid red",
+            borderRadius: "5px",
+            backgroundColor: "black",
+            color: "white",
+        };
+
+        let books = null;
+        if (this.state.showBooks) {
+            books = <BookList
+                books={this.state.books}
+                deleteBookState={this.deleteBookState}
+                changeWithInputState={this.changeWithInputState}
+            />
         }
-        return(
-          <div className='app'>
-            <h1>....Book list...</h1>
-            <button onClick={this.toggleBooks}>Toggle List</button>
-            {books}
-          </div>
-        )
-      }
+
+        return (
+            <div className="App">
+                <h1 style={style}>Book List</h1>
+                <button onClick={this.toggleBooks}>Toggle Books</button>
+                {books}
+            </div>
+        );
+    }
 }
+
 export default MainComponent;
